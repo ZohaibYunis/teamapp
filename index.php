@@ -1,7 +1,7 @@
 <?php 
     session_start();
     require_once 'Includes/checkLogin.php';
-    
+    require_once './Includes/functions.php';
 ?>
 
 <!DOCTYPE HTML>
