@@ -1,9 +1,8 @@
 <?php 
+
     session_start();
     require_once '../Includes/connection.php';
     $errors     = array();
-
-    
     
     try {
         $username   = trim(mysqli_real_escape_string($connect, $_POST['username']));        
@@ -30,10 +29,22 @@
     
     if (count($errors) == 0){
         
-        $sql    = "select username, password from admin where username = $username and password = $password";
-        $query  = mysqli_query($connect, $sql);
+        echo $sql    = "select username, password from admin where username = '$username' and password = md5('$password')";
+        $query       = mysqli_query($connect, $sql);
+        $count       = mysqli_num_rows($query);
         
+        if ($count == 1){
+            
+            $_SESSION['username'] = $username;
+            header('location: ../index.php');            
         
+        }else{
+            
+            $errors['loginErr'] = "Invalid Login Credentials.";
+            $_SESSION['errors'] = $errors;
+            header('location: ../login.php');
+            
+        }
         
     }else{
         

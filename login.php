@@ -1,11 +1,10 @@
 <?php 
     session_start();
-    
 if (isset($_SESSION['errors'])){
     $errors = $_SESSION['errors'];
     unset($_SESSION['errors']);
-}    
     
+}    
     
 ?>
 
@@ -26,22 +25,14 @@ if (isset($_SESSION['errors'])){
                     <form action="process/processLogin.php" method="post">
                        
                         <?php if (isset($errors)): ?>
-                        
-                        <div class="copyrights">
-                            
-                            
-                            
-                            <?php 
-                                
-                                foreach ($errors as $error):
-                                    echo "<p class='text-left'>" . $error . "</p>";
-                                endforeach;
-                                
-                            ?>
-                            
-                        </div>
-<?php endif; ?>                        
-                        <br>
+                            <div class="alert alert-danger">
+                                <?php 
+                                    foreach ($errors as $error):
+                                        echo  $error . "<br>";
+                                    endforeach;
+                                ?>
+                            </div>                            
+                        <?php endif; ?>                        
                         
                         <div class="username">
                             <span class="username">Username:</span>
