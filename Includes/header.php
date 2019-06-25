@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="css/morris.css" type="text/css"/>
         <!-- Graph CSS -->
         <link href="css/font-awesome.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
         <!-- jQuery -->
         <script src="js/jquery-2.1.4.min.js"></script>
         <!-- //jQuery -->
