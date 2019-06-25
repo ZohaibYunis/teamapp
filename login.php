@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+    
+if (isset($_SESSION['errors'])){
+    $errors = $_SESSION['errors'];
+    unset($_SESSION['errors']);
+}    
+    
+    
+?>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -13,9 +24,24 @@
                     <h2 style="text-align: left; font-weight: 100%; font-family: 'Patua One', cursive;" >Team App Login</h2>
 
                     <form action="process/processLogin.php" method="post">
+                       
+                        <?php if (isset($errors)): ?>
                         
-                        
-                        
+                        <div class="copyrights">
+                            
+                            
+                            
+                            <?php 
+                                
+                                foreach ($errors as $error):
+                                    echo "<p class='text-left'>" . $error . "</p>";
+                                endforeach;
+                                
+                            ?>
+                            
+                        </div>
+<?php endif; ?>                        
+                        <br>
                         
                         <div class="username">
                             <span class="username">Username:</span>
