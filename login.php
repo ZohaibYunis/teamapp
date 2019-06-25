@@ -10,13 +10,16 @@
             <div class="container">
                 <div class="sin-w3-agile">
 
-                    <h2 style="text-align: left; font-weight: 100%; font-family: 'Patua One', cursive;" >Team App Sign In</h2>
+                    <h2 style="text-align: left; font-weight: 100%; font-family: 'Patua One', cursive;" >Team App Login</h2>
 
-                    <form action="#" method="post">
-
+                    <form action="process/processLogin.php" method="post">
+                        
+                        
+                        
+                        
                         <div class="username">
                             <span class="username">Username:</span>
-                            <input type="text" name="name" class="name" placeholder="" required="">
+                            <input type="text" name="username" class="name" placeholder="" required="">
                             <div class="clearfix"></div>
                         </div>
 
@@ -27,7 +30,7 @@
                         </div>
 
                         <div class="login-w3">
-                            <input type="submit" class="login" value="Sign In">
+                            <input type="submit" class="login" value="Login">
                         </div>
 
                         <div class="clearfix"></div>
