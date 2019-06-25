@@ -1,3 +1,3 @@
 <div class="copyrights">
-    <p>© 2016 Pooled. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+    <p>© 2019 TeamApp. All Rights Reserved | Developed by  <a href="http://aspiranthawk.com/" target="_blank">Aspirant Hawk</a> </p>
 </div>
