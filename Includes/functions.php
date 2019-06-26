@@ -1,9 +1,13 @@
 <?php 
 
 require 'connection.php';
-
 $folderName = "teamapp";
-define('base_url', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/" . $folderName . "/") ;
+
+if (strpos($_SERVER['PHP_SELF'], $folderName)){
+    define('base_url', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/" . $folderName . "/") ;    
+}else{
+    define('base_url', $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . "/") ;        
+}
 
 function getUsers(){
     
@@ -67,11 +71,7 @@ function SYCount($table = 'users'){
     }else{
         return FALSE;
     }
-    
-    
-    
 }
-
 
 
 
