@@ -1,18 +1,40 @@
 <?php
-session_start();
-require_once 'Includes/checkLogin.php';
-require_once './Includes/functions.php';
 
-if (isset($_SESSION['success']['userAdded'])){
-    $success = $_SESSION['success']['userAdded'];
-    unset($_SESSION['success']['userAdded']);
-} 
-
-if (isset($_SESSION['recError']['recError'])) {
-    $recError = $_SESSION['recError']['recError'];
-    unset($_SESSION['recError']['recError']);
-}
-
+    session_start();
+    require_once 'Includes/checkLogin.php';
+    require_once './Includes/functions.php';
+    
+    if ($_GET['userTeam']){
+        
+        $recError   = array();
+        
+        $sql        = "SELECT * FROM `teams_users` where id =" . mysqli_real_escape_string($connect ,$_GET['userTeam'])."";
+        $query      = mysqli_query($connect, $sql);
+        $rows       = mysqli_num_rows($query);
+        
+        if ($rows){
+            
+            $results        = mysqli_fetch_array($query, MYSQLI_ASSOC);            
+            
+            $sqlUsers       = "SELECT first_name, last_name FROM `users` where id = ".$results['user_id']."";
+            $queryUsers     = mysqli_query($connect, $sqlUsers);
+            $resultsUsers   = mysqli_fetch_array($queryUsers, MYSQLI_ASSOC);            
+            
+            $sqlteams       = "SELECT name FROM teams where id in (".$results['team_id'].") ";
+            $queryteams     = mysqli_query($connect, $sqlteams);
+            $resultsteams   = mysqli_fetch_all($queryteams, MYSQLI_ASSOC);                                            
+            
+        }else{
+            
+            $recError['recError']  = "User Team Record Not Found.";
+            $_SESSION['recError']  = $recError;
+            
+            header('location:viewUsersTeams.php');            
+        }
+    }else{
+        header('location:viewUsersTeams.php');
+    }
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -33,70 +55,34 @@ if (isset($_SESSION['recError']['recError'])) {
                     <!--heder end here-->
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a><i class="fa fa-angle-right"></i>Users<i class="fa fa-angle-right"></i> View Users </li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a><i class="fa fa-angle-right"></i>Users<i class="fa fa-angle-right"></i> View User </li>
                     </ol>
-
-                    <?php if (isset($success)): ?>                                 
-                    <div class="alert alert-success">
-                      <strong>Success!</strong><?php echo " " . $success; ?>
-                    </div>
-                    <?php endif; ?>                            
-
-                   <?php if (isset($recError)): ?>                                 
-                    <div class="alert alert-danger">
-                      <strong>Failed!</strong><?php echo " " . $recError; ?>
-                    </div>
-                    <?php endif; ?>                            
-                     
                     
                     <div class="agile-grids">	
                         <!-- tables -->
 
                         <div class="agile-tables">
                             <div class="w3l-table-info">
-                                <h2>View Users</h2>
+                                <h2>View User</h2>
                                 <hr>
                                 <div class="table-responsive">                                
                                     <table class="table table-bordered">
-                                        <thead>
+
                                             <tr>
-                                                <th style="text-align: center;">SR</th>
-                                                <th style="text-align: center;">First Name</th>
-                                                <th style="text-align: center;">Last Name</th>
-                                                <th style="text-align: center;">Actions</th>
+                                                <th>First Name</th>
+                                                <td><?php echo $resultsUsers['first_name'] ?></td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <?php
-                                            $inc = 1;
-                                            $sql = "SELECT * FROM `users` order by id desc";
-                                            $query = mysqli_query($connect, $sql);
-                                            $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
                                             
-                                            foreach ($results as $result):
+                                            <tr>
+                                                <th>Last Name</th>
+                                                <td><?php echo $resultsUsers['last_name'] ?></td>                                                
+                                            </tr>
                                             
-                                                ?>
-
-
-                                                <tr>
-                                                    
-                                                    <td style="text-align: center;"><?php echo $inc;  ?></td>
-                                                    <td><?php echo $result['first_name'];  ?></td>
-                                                    <td><?php echo $result['last_name']; ?></td>
-                                                    
-                                                    <td style="text-align: center;">
-                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
-                                                        <a href="<?php echo base_url . "viewUser.php?user=".$result['id']."" ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
-                                                        <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
-                                                    </td>
-                                                    
-                                                </tr>
-
-                                                
-                                            <?php $inc++; endforeach; ?>                                        
-
-                                        </tbody>
+                                            <tr>
+                                                <th>Teams</th>
+                                                <td><?php foreach ($resultsteams as $resultsteam): echo $resultsteam['name'] . ', '; endforeach; ?> </td>
+                                            </tr>
+                                            
                                     </table>
                                 </div>    
                             </div>

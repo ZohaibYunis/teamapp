@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once 'Includes/checkLogin.php';
 require_once './Includes/functions.php';
@@ -6,6 +7,11 @@ require_once './Includes/functions.php';
 if (isset($_SESSION['success']['userTeamAdded'])) {
     $success = $_SESSION['success']['userTeamAdded'];
     unset($_SESSION['success']['userTeamAdded']);
+}
+
+if (isset($_SESSION['recError']['recError'])) {
+    $recError = $_SESSION['recError']['recError'];
+    unset($_SESSION['recError']['recError']);
 }
 ?>
 
@@ -39,6 +45,11 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
                     </div>
                     <?php endif; ?>                            
                     
+                    <?php if (isset($recError)): ?>                                 
+                    <div class="alert alert-danger">
+                      <strong>Failed!</strong><?php echo " " . $recError; ?>
+                    </div>
+                    <?php endif; ?>                            
                     
                     <div class="agile-grids">	
                         <!-- tables -->
@@ -51,10 +62,11 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>SR</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Teams</th>
+                                                <th style="text-align: center;">SR</th>
+                                                <th style="text-align: center;">First Name</th>
+                                                <th style="text-align: center;">Last Name</th>
+                                                <th style="text-align: center;">Teams</th>
+                                                <th style="text-align: center;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -80,7 +92,7 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
 
                                                 <tr>
                                                     
-                                                    <td><?php echo $inc;  ?></td>
+                                                    <td style="text-align: center;"><?php echo $inc;  ?></td>
                                                     <td><?php echo $resultsUsers[0]['first_name'];  ?></td>
                                                     <td><?php echo $resultsUsers[0]['last_name']; ?></td>
                                                     <td><?php foreach ($resultsteams as $resultsteam){
@@ -88,6 +100,13 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
                                                         echo $resultsteam['name'] . ', ';
                                                         
                                                     } ?> </td>
+
+                                                    
+                                                    <td style="text-align: center;">
+                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
+                                                        <a href="<?php echo base_url . "viewUserTeam.php?userTeam=" . $result['id'] ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
+                                                        <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
+                                                    </td>
                                                     
                                                 </tr>
 

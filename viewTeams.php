@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once 'Includes/checkLogin.php';
 require_once './Includes/functions.php';
@@ -7,6 +8,11 @@ if (isset($_SESSION['success']['teamAdded'])){
     $success = $_SESSION['success']['teamAdded'];
     unset($_SESSION['success']['teamAdded']);
 } 
+
+if (isset($_SESSION['recError']['recError'])) {
+    $recError = $_SESSION['recError']['recError'];
+    unset($_SESSION['recError']['recError']);
+}
 
 ?>
 
@@ -39,7 +45,12 @@ if (isset($_SESSION['success']['teamAdded'])){
                       <strong>Success!</strong><?php echo " " . $success; ?>
                     </div>
                     <?php endif; ?>                            
-                    
+
+                  <?php if (isset($recError)): ?>                                 
+                    <div class="alert alert-danger">
+                      <strong>Failed!</strong><?php echo " " . $recError; ?>
+                    </div>
+                    <?php endif; ?>                            
                     
                     <div class="agile-grids">	
                         <!-- tables -->
@@ -52,8 +63,9 @@ if (isset($_SESSION['success']['teamAdded'])){
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>SR</th>
-                                                <th>Teams</th>
+                                                <th style="text-align: center;">SR</th>
+                                                <th style="text-align: center;">Teams</th>
+                                                <th style="text-align: center;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -61,7 +73,7 @@ if (isset($_SESSION['success']['teamAdded'])){
                                             <?php
                                             
                                                 $inc = 1;
-                                                $sqlteams = "SELECT name FROM teams order by id desc";
+                                                $sqlteams = "SELECT * FROM teams order by id desc";
                                                 $queryteams = mysqli_query($connect, $sqlteams);
                                                 $resultsteams = mysqli_fetch_all($queryteams, MYSQLI_ASSOC);                                            
                                                 
@@ -76,8 +88,18 @@ if (isset($_SESSION['success']['teamAdded'])){
 
                                                 <tr>
                                                     
-                                                    <td><?php echo $inc;  ?></td>
+                                                    <td style="text-align: center;"><?php echo $inc;  ?></td>
                                                     <td><?php echo $result['name']; ?></td>
+                                                    
+                                                    
+                                                    <td style="text-align: center;">
+                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
+                                                        <a href="<?php echo base_url . "viewTeam.php?Team=" . $result['id'] ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
+                                                        <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
+                                                    </td>
+                                                    
+                                                    
+                                                    
                                                 </tr>
 
                                             <?php $inc++; endforeach; ?>                                        
