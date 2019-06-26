@@ -9,58 +9,36 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
 }
 ?>
 
-<?php if (isset($success)): ?>                                 
-    <?php echo $success; ?>
-<?php endif; ?>        
-
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title>Pooled Admin Panel Category Flat Bootstrap Responsive Web Template | Tabels :: w3layouts</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="Pooled Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-              Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-        <!-- Bootstrap Core CSS -->
-        <link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-        <!-- Custom CSS -->
-        <link href="css/style.css" rel='stylesheet' type='text/css' />
-        <link rel="stylesheet" href="css/morris.css" type="text/css"/>
-        <!-- Graph CSS -->
-        <link href="css/font-awesome.css" rel="stylesheet"> 
-        <!-- jQuery -->
-        <script src="js/jquery-2.1.4.min.js"></script>
-        <!-- //jQuery -->
-        <!-- tables -->
-        <link rel="stylesheet" type="text/css" href="css/table-style.css" />
-        <link rel="stylesheet" type="text/css" href="css/basictable.css" />
-        <script type="text/javascript" src="js/jquery.basictable.min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('#table').basictable();
-            });
-        </script>
-        <!-- //tables -->
-        <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'/>
-        <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <!-- lined-icons -->
-        <link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
-        <!-- //lined-icons -->
-    </head> 
+
+
+    <!-- Header Start -->    
+        <?php require_once 'Includes/header.php'; ?>    
+    <!-- Header End -->        
+    
+    
+    
     <body>
         <div class="page-container">
             <!--/content-inner-->
             <div class="left-content">
                 <div class="mother-grid-inner">
-                    
+
                     <!--header start here-->
-                        <?php require_once 'Includes/mainHeader.php'; ?> 
+                    <?php require_once 'Includes/mainHeader.php'; ?> 
                     <!--heder end here-->
-                    
+
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Home</a><i class="fa fa-angle-right"></i>Users Teams <i class="fa fa-angle-right"></i> View Users Teams</li>
                     </ol>
+
+                    <?php if (isset($success)): ?>                                 
+                    <div class="alert alert-success">
+                      <strong>Success!</strong><?php echo " " . $success; ?>
+                    </div>
+                    <?php endif; ?>                            
+                    
                     
                     <div class="agile-grids">	
                         <!-- tables -->
@@ -69,42 +47,55 @@ if (isset($_SESSION['success']['userTeamAdded'])) {
                             <div class="w3l-table-info">
                                 <h2>View Users Teams</h2>
                                 <hr>
-                                <table id="table">
-                                    <thead>
-                                        <tr>
-                                            <th>SR</th>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Teams</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-<?php  
+                                <div class="table-responsive">                                
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SR</th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Teams</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
 
-    $sql = "SELECT * FROM `teams_users`";
-    $query = mysqli_query($connect, $sql);
-    $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
-    
-    echo "<pre>";
-    print_r($result);
+                                            <?php
+                                            $inc = 1;
+                                            $sql = "SELECT * FROM `teams_users` order by id desc";
+                                            $query = mysqli_query($connect, $sql);
+                                            $results = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
-foreach ($results as $results):
-    
-?>
-                                       
-                                        
-                                        <tr>
-                                            <td>Jill Smith</td>
-                                            <td>25</td>
-                                            <td>Female</td>
-                                            <td>5'4</td>
-                                        </tr>
-                                        
-<?php endforeach; ?>                                        
-                                        
-                                    </tbody>
-                                </table>
+                                            foreach ($results as $result):
+                                                
+                                            $sqlUsers = "SELECT first_name, last_name FROM `users` where id = ".$result['user_id']."";
+                                            $queryUsers = mysqli_query($connect, $sqlUsers);
+                                            $resultsUsers = mysqli_fetch_all($queryUsers, MYSQLI_ASSOC);
+
+                                            $sqlteams = "SELECT name FROM teams where id in (".$result['team_id'].") ";
+                                            $queryteams = mysqli_query($connect, $sqlteams);
+                                            $resultsteams = mysqli_fetch_all($queryteams, MYSQLI_ASSOC);                                            
+                                            
+                                                ?>
+
+
+                                                <tr>
+                                                    
+                                                    <td><?php echo $inc;  ?></td>
+                                                    <td><?php echo $resultsUsers[0]['first_name'];  ?></td>
+                                                    <td><?php echo $resultsUsers[0]['last_name']; ?></td>
+                                                    <td><?php foreach ($resultsteams as $resultsteam){
+                                                        
+                                                        echo $resultsteam['name'] . ', ';
+                                                        
+                                                    } ?> </td>
+                                                    
+                                                </tr>
+
+                                            <?php $inc++; endforeach; ?>                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>    
                             </div>
 
                         </div>
@@ -133,7 +124,7 @@ foreach ($results as $results):
                     <!--inner block end here-->
 
                     <!-- Footer Start -->                    
-                    <?php require_once 'Includes/footer.php'; ?>
+<?php require_once 'Includes/footer.php'; ?>
                     <!-- Footer End -->                    
 
 
@@ -143,7 +134,7 @@ foreach ($results as $results):
 
 
             <!-- sidebar-menu -->
-                <?php require_once 'Includes/navbar.php'; ?>
+<?php require_once 'Includes/navbar.php'; ?>
             <!-- sidebar-menu End-->
 
 
