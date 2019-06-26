@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="four-text">
                                     <h3>User</h3>
-                                    <h4>  </h4>
+                                    <h4> <?php echo SYCount($table = 'users'); ?> </h4>
 
                                 </div>
 
@@ -45,11 +45,11 @@
                         <div class="col-md-4 four-grid">
                             <div class="four-agileinfo">
                                 <div class="icon">
-                                    <i class="glyphicon glyphicon-list-alt" aria-hidden="true"></i>
+                                    <i class="fa fa-users" style="color: white; font-size: 36px" aria-hidden="true"></i>
                                 </div>
                                 <div class="four-text">
                                     <h3>Teams</h3>
-                                    <h4></h4>
+                                    <h4> <?php echo SYCount($table = 'teams'); ?> </h4>
 
                                 </div>
 
@@ -58,12 +58,11 @@
                         <div class="col-md-4 four-grid">
                             <div class="four-w3ls">
                                 <div class="icon">
-                                    <i class="glyphicon glyphicon-folder-open" aria-hidden="true"></i>
+                                    <i class="fa fa-users" style="color: white; font-size: 36px" aria-hidden="true"></i>
                                 </div>
                                 <div class="four-text">
                                     <h3>Users Teams</h3>
-                                    <h4></h4>
-
+                                    <h4> <?php echo SYCount($table = 'teams_users'); ?> </h4>
                                 </div>
 
                             </div>

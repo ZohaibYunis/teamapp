@@ -53,5 +53,26 @@ function getTeams(){
     
 }
 
+function SYCount($table = 'users'){
+    
+    global $connect;
+
+    $sql         = "select count(*) as Total from $table";
+    $query       = mysqli_query($connect, $sql);
+    $count       = mysqli_num_rows($query);
+    $result      = mysqli_fetch_array($query, MYSQLI_ASSOC);
+    
+    if ($result){
+        return $result['Total'];
+    }else{
+        return FALSE;
+    }
+    
+    
+    
+}
+
+
+
 
 ?>
