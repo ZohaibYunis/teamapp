@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require_once 'Includes/checkLogin.php';
 require_once './Includes/functions.php';
@@ -99,8 +100,8 @@ if (isset($_SESSION['recError']['recError'])) {
                                                     <td><?php echo $result['last_name']; ?></td>
                                                     
                                                     <td style="text-align: center;">
-                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
-                                                        <a href="<?php echo base_url . "viewUser.php?user=".$result['id']."" ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
+                                                        <a href="<?php echo base_url . "editUser.php?editUser=". $result['id']  ?>"> <i style="color: green" class="fa fa-edit"></i> </a>
+                                                        <a href="<?php echo base_url . "viewUser.php?user=".$result['id'] ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
                                                         <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
                                                     </td>
                                                     

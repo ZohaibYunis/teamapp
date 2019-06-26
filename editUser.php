@@ -10,6 +10,26 @@ if (isset($_SESSION['errors'])){
     unset($_SESSION['errors']);
 }    
 
+    if ($_GET['editUser']){
+        
+        $recError   = array();
+        
+        $sql        = "SELECT * FROM `users` where id =" . mysqli_real_escape_string($connect ,$_GET['editUser'])."";
+        $query      = mysqli_query($connect, $sql);
+        $rows       = mysqli_num_rows($query);
+        
+        if ($rows){
+            $results = mysqli_fetch_array($query, MYSQLI_ASSOC);            
+        }else{
+            
+            $recError['recError']  = "User Record Not Found for Update.";
+            $_SESSION['recError']  = $recError;
+            
+            header('location:viewUsers.php');            
+        }
+    }else{
+        header('location:viewUsers.php');
+    }
 
 ?>
 
@@ -31,7 +51,7 @@ if (isset($_SESSION['errors'])){
                     <!--heder end here-->
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Users <i class="fa fa-angle-right"></i> Add User</li>
+                        <li class="breadcrumb-item"><a href="index.html">Home</a><i class="fa fa-angle-right"></i>Users <i class="fa fa-angle-right"></i> Edit User</li>
                     </ol>
 
                     <!--grid-->
@@ -42,21 +62,21 @@ if (isset($_SESSION['errors'])){
                                 <div class="row">
                                 
                                     <div class="col-md-9">
-                                        <h3>Add User</h3>
+                                        <h3>Edit User</h3>
                                     </div>
 
                                     <div class="col-md-3" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'addUser.php' ?>"> <i style="color: green" class="fa fa-eye"></i> Add User</a> | 
                                         <a href="<?php echo base_url . 'viewUsers.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View User</a>
                                     </div>
                                     
                                 </div>                                
                             
-                            
                             <hr>
                             
                             <div class="tab-content">
                                 <div class="tab-pane active" id="horizontal-form">
-                                    <form class="form-horizontal" action="process/processAddUser.php" method="post">
+                                    <form class="form-horizontal" action="process/processUpdateUser.php" method="post">
 
                                         <?php if (isset($errors)): ?>
                                             <div class="alert alert-danger">
@@ -70,14 +90,16 @@ if (isset($_SESSION['errors'])){
                                         
                                         <div class="form-group">
                                             <label for="FirstName" class="col-sm-2 control-label">First Name</label>
+                                            
                                             <div class="col-sm-8">
-                                                <input type="text" name="firstName" class="form-control1" id="focusedinput" placeholder="Enter First Name">
+                                                <input type="text" name="firstName" class="form-control1" id="focusedinput" placeholder="Enter First Name" value="<?php echo $results['first_name'] ?>">
                                             </div>
-                                   <?php if (isset($errors['firstName_error'])): ?>                                 
-                                            <div class="col-sm-2">
-                                                <p class="help-block" style="color: #a94442; font-weight: bolder;"><?php echo $errors['firstName_error'] ?></p>
-                                            </div>
-                                    <?php endif; ?>        
+                                            
+                                           <?php if (isset($errors['firstName_error'])): ?>                                 
+                                                <div class="col-sm-2">
+                                                    <p class="help-block" style="color: #a94442; font-weight: bolder;"><?php echo $errors['firstName_error'] ?></p>
+                                                </div>
+                                            <?php endif; ?>        
                                         </div>
 
                                         <div class="form-group">
@@ -85,21 +107,21 @@ if (isset($_SESSION['errors'])){
                                             <label for="LastName" class="col-sm-2 control-label">Last Name</label>
 
                                             <div class="col-sm-8">
-                                                <input type="text" name="lastName" class="form-control1" id="focusedinput" placeholder="Enter Last Name">
+                                                <input type="text" name="lastName" class="form-control1" id="focusedinput" placeholder="Enter Last Name" value="<?php echo $results['last_name'] ?>">
                                             </div>
                                             
-                                   <?php if (isset($errors['lastName_error'])): ?>                                 
+                                        <?php if (isset($errors['lastName_error'])): ?>                                 
                                             <div class="col-sm-2">
                                                 <p class="help-block" style="color: #a94442; font-weight: bolder;"><?php echo $errors['lastName_error'] ?></p>
                                             </div>
-                                    <?php endif; ?>        
+                                        <?php endif; ?>        
 
                                         </div>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="row">
                                         <div class="col-sm-8 col-sm-offset-2">
-                                            <button class="btn-primary btn">Add User</button>
+                                            <button class="btn-primary btn">Edit User</button>
                                         </div>
                                     </div>
                                 </div>
