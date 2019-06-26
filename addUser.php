@@ -98,7 +98,7 @@ if (isset($_SESSION['errors'])){
                                 <div class="panel-footer">
                                     <div class="row">
                                         <div class="col-sm-8 col-sm-offset-2">
-                                            <button class="btn-primary btn">Submit</button>
+                                            <button class="btn-primary btn">Add User</button>
                                         </div>
                                     </div>
                                 </div>
