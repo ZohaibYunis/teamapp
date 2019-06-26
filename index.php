@@ -37,7 +37,7 @@
                                     <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
                                 </div>
                                 <div class="four-text">
-                                    <h3>User</h3>
+                                    <h3>Users</h3>
                                     <h4> <?php echo SYCount($table = 'users'); ?> </h4>
 
                                 </div>

@@ -92,7 +92,7 @@ if (isset($_SESSION['errors'])){
                                             <label for="FirstName" class="col-sm-2 control-label">First Name</label>
                                             
                                             <div class="col-sm-8">
-                                                <input type="text" name="firstName" class="form-control1" id="focusedinput" placeholder="Enter First Name" value="<?php echo $results['first_name'] ?>">
+                                                <input type="text" name="firstName" class="form-control1" id="focusedinput" placeholder="Enter First Name" value="<?php echo(isset($errors['firstName_error'])) ? '' :  $results['first_name'] ?>">
                                             </div>
                                             
                                            <?php if (isset($errors['firstName_error'])): ?>                                 
@@ -107,16 +107,19 @@ if (isset($_SESSION['errors'])){
                                             <label for="LastName" class="col-sm-2 control-label">Last Name</label>
 
                                             <div class="col-sm-8">
-                                                <input type="text" name="lastName" class="form-control1" id="focusedinput" placeholder="Enter Last Name" value="<?php echo $results['last_name'] ?>">
+                                                <input type="text" name="lastName" class="form-control1" id="focusedinput" placeholder="Enter Last Name" value="<?php echo(isset($errors['lastName_error'])) ? '' :  $results['last_name'] ?>">
                                             </div>
-                                            
-                                        <?php if (isset($errors['lastName_error'])): ?>                                 
+                                        
+                                            <?php if (isset($errors['lastName_error'])): ?>                                 
                                             <div class="col-sm-2">
                                                 <p class="help-block" style="color: #a94442; font-weight: bolder;"><?php echo $errors['lastName_error'] ?></p>
                                             </div>
                                         <?php endif; ?>        
 
                                         </div>
+                                        
+                                        <input type="hidden" name="userID" value="<?php echo $results['id'] ?>">                                                                                    
+                                        
                                 </div>
                                 <div class="panel-footer">
                                     <div class="row">
