@@ -25,10 +25,10 @@ if (isset($_SESSION['errors'])){
             $recError['recError']  = "Team Record Not Found for Update.";
             $_SESSION['recError']  = $recError;
             
-            header('location:editTeam.php');            
+            header('location:viewTeams.php');            
         }
     }else{
-        header('location:editTeam.php');
+        header('location:viewTeams.php');
     }
 
 ?>
@@ -67,7 +67,7 @@ if (isset($_SESSION['errors'])){
 
                                     <div class="col-md-3" style="line-height: 60px;">                                
                                         <a href="<?php echo base_url . 'addTeam.php' ?>"> <i style="color: green" class="fa fa-eye"></i> Add Team</a> | 
-                                        <a href="<?php echo base_url . 'viewTeam.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Team</a>
+                                        <a href="<?php echo base_url . 'viewTeams.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Teams</a>
                                     </div>
                                     
                                 </div>                                

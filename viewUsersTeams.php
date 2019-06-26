@@ -18,12 +18,9 @@ if (isset($_SESSION['recError']['recError'])) {
 <!DOCTYPE HTML>
 <html>
 
-
     <!-- Header Start -->    
         <?php require_once 'Includes/header.php'; ?>    
     <!-- Header End -->        
-    
-    
     
     <body>
         <div class="page-container">
@@ -115,7 +112,7 @@ if (isset($_SESSION['recError']['recError'])) {
 
                                                     
                                                     <td style="text-align: center;">
-                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
+                                                        <a href="<?php echo base_url . "editUserTeam.php?editUserTeam=" . $result['id'] ?>"> <i style="color: green" class="fa fa-edit"></i> </a>
                                                         <a href="<?php echo base_url . "viewUserTeam.php?userTeam=" . $result['id'] ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
                                                         <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
                                                     </td>

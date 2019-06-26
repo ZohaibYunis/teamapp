@@ -67,7 +67,7 @@ if (isset($_SESSION['errors'])){
 
                                     <div class="col-md-3" style="line-height: 60px;">                                
                                         <a href="<?php echo base_url . 'addUser.php' ?>"> <i style="color: green" class="fa fa-eye"></i> Add User</a> | 
-                                        <a href="<?php echo base_url . 'viewUsers.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View User</a>
+                                        <a href="<?php echo base_url . 'viewUsers.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Users</a>
                                     </div>
                                     
                                 </div>                                
