@@ -24,8 +24,6 @@ if (isset($_SESSION['recError']['recError'])) {
         <?php require_once 'Includes/header.php'; ?>    
     <!-- Header End -->        
     
-    
-    
     <body>
         <div class="page-container">
             <!--/content-inner-->
@@ -89,10 +87,6 @@ if (isset($_SESSION['recError']['recError'])) {
                                                 $queryteams = mysqli_query($connect, $sqlteams);
                                                 $resultsteams = mysqli_fetch_all($queryteams, MYSQLI_ASSOC);                                            
                                                 
-//                                                echo "<pre>";
-//                                                print_r($resultsteams);
-//                                                
-                                                
                                                 foreach ($resultsteams as $result):
                                             
                                             ?>
@@ -105,7 +99,7 @@ if (isset($_SESSION['recError']['recError'])) {
                                                     
                                                     
                                                     <td style="text-align: center;">
-                                                        <!--<a href="<?php ?>"> <i style="color: green" class="fa fa-edit"></i> </a>-->
+                                                        <a href="<?php echo base_url . 'editTeam.php?editTeam=' . $result['id'] ?>"> <i style="color: green" class="fa fa-edit"></i> </a>
                                                         <a href="<?php echo base_url . "viewTeam.php?Team=" . $result['id'] ?>"> <i style="color: green" class="fa fa-eye"></i> </a>
                                                         <!--<a href="<?php ?>"> <i style="color: red" class="fa fa-trash-o"></i> </a>-->
                                                     </td>
