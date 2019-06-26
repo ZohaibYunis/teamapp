@@ -1,11 +1,15 @@
 <?php 
     session_start();
+    
+if (isset($_SESSION['username'])){
+    header('location:index.php');
+}    
+    
 if (isset($_SESSION['errors'])){
     $errors = $_SESSION['errors'];
     unset($_SESSION['errors']);
-    
 }    
-    
+
 ?>
 
 <!DOCTYPE HTML>

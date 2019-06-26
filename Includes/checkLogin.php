@@ -1,6 +1,6 @@
 <?php
 
-require_once 'connection.php';
+require 'connection.php';
 
 $user_check    = $_SESSION['username'];
 $ses_sql       = mysqli_query($connect, "select username from admin where username = '$user_check' ");

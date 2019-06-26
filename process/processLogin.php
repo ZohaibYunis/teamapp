@@ -29,7 +29,7 @@
     
     if (count($errors) == 0){
         
-        echo $sql    = "select username, password from admin where username = '$username' and password = md5('$password')";
+        $sql         = "select username, password from admin where username = '$username' and password = md5('$password')";
         $query       = mysqli_query($connect, $sql);
         $count       = mysqli_num_rows($query);
         

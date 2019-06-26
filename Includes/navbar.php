@@ -26,13 +26,13 @@
                 <ul id="menu-academico-sub" >
                     
                     <li id="menu-academico-boletim" >
-                        <a href="#">
+                        <a href="<?php echo base_url . 'addUser.php' ?>">
                             Add User
                         </a>
                     </li>
                     
                     <li id="menu-academico-avaliacoes" >
-                        <a href="#">
+                        <a href="<?php echo base_url . 'viewUsers.php' ?>">
                             View Users
                         </a>
                     </li>
@@ -53,14 +53,40 @@
                 <ul id="menu-academico-sub" >
                     
                     <li id="menu-academico-boletim" >
-                        <a href="#">
+                        <a href="<?php echo base_url . 'addTeam.php' ?>">
                             Add Team
                         </a>
                     </li>
                     
                     <li id="menu-academico-avaliacoes" >
-                        <a href="#">
+                        <a href="<?php echo base_url . 'viewTeams.php' ?>">
                             View Team
+                        </a>
+                    </li>
+                    
+                </ul>
+            </li>
+            
+            <li id="menu-academico" >
+                
+                <a href="#">
+                    <i class="fa fa fa-users"></i>  
+                    <span>User Teams</span> 
+                    <span class="fa fa-angle-right" style="float: right"></span>
+                    <div class="clearfix"></div>
+                </a>
+                
+                <ul id="menu-academico-sub" >
+                    
+                    <li id="menu-academico-boletim" >
+                        <a href="<?php echo base_url . 'addUserTeam.php' ?>">
+                            Add User Team
+                        </a>
+                    </li>
+                    
+                    <li id="menu-academico-avaliacoes" >
+                        <a href="<?php echo base_url . 'viewUsersTeams.php' ?>">
+                            View Users Teams
                         </a>
                     </li>
                     
