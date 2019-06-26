@@ -52,7 +52,20 @@
 
                         <div class="agile-tables">
                             <div class="w3l-table-info">
-                                <h2>View User</h2>
+
+                                <div class="row">
+                                
+                                    <div class="col-md-9">
+                                        <h2>View User</h2>
+                                    </div>
+
+                                    <div class="col-md-3" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'addUser.php' ?>"> <i style="color: green" class="fa fa-plus"></i> Add User </a> |
+                                        <a href="<?php echo base_url . 'viewUsers.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Users</a>
+                                    </div>
+                                    
+                                </div>                                
+                                
                                 <hr>
                                 <div class="table-responsive">                                
                                     <table class="table table-bordered">

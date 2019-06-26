@@ -53,7 +53,21 @@
 
                         <div class="agile-tables">
                             <div class="w3l-table-info">
-                                <h2>View Team</h2>
+
+                                <div class="row">
+                                    
+                                    <div class="col-md-9">
+                                        <h2>View Team</h2>
+                                    </div>
+
+                                    <div class="col-md-3" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'addTeam.php' ?>"> <i style="color: green" class="fa fa-plus"></i> Add Team </a> |
+                                        <a href="<?php echo base_url . 'viewTeams.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Teams</a>
+                                    </div>
+                                    
+                                </div>                                
+                                
+                                
                                 <hr>
                                 <div class="table-responsive">                                
                                     <table class="table table-bordered">

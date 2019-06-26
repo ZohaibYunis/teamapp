@@ -55,7 +55,7 @@
                     <!--heder end here-->
 
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.php">Home</a><i class="fa fa-angle-right"></i>Users<i class="fa fa-angle-right"></i> View User </li>
+                        <li class="breadcrumb-item"><a href="index.php">Home</a><i class="fa fa-angle-right"></i>User Teams<i class="fa fa-angle-right"></i> User Team </li>
                     </ol>
                     
                     <div class="agile-grids">	
@@ -63,7 +63,22 @@
 
                         <div class="agile-tables">
                             <div class="w3l-table-info">
-                                <h2>View User</h2>
+
+                                <div class="row">
+                                
+                                    <div class="col-md-9">
+                                        <h2>View User Team</h2>
+                                    </div>
+
+                                    <div class="col-md-3" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'addUserTeam.php' ?>"> <i style="color: green" class="fa fa-plus"></i> Add User Team</a> |
+                                        <a href="<?php echo base_url . 'viewUsersTeams.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View User Teams</a>
+                                    </div>
+                                    
+                                </div>                                
+                                
+                                
+                                
                                 <hr>
                                 <div class="table-responsive">                                
                                     <table class="table table-bordered">

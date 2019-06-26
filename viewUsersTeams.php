@@ -56,7 +56,19 @@ if (isset($_SESSION['recError']['recError'])) {
 
                         <div class="agile-tables">
                             <div class="w3l-table-info">
-                                <h2>View Users Teams</h2>
+                                
+                                <div class="row">
+                                    
+                                    <div class="col-md-10">
+                                       <h2>View Users Teams</h2>                                    
+                                    </div>
+
+                                    <div class="col-md-2" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'addUserTeam.php' ?>"> <i style="color: green" class="fa fa-plus"></i> Add User Team</a>
+                                    </div>
+                                    
+                                </div>                                
+                                
                                 <hr>
                                 <div class="table-responsive">                                
                                     <table class="table table-bordered">

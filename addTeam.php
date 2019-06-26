@@ -35,8 +35,21 @@ if (isset($_SESSION['errors'])) {
                     <div class="grid-form">
 
                         <div class="grid-form1">
-                            <h3>Add Team</h3>
 
+                                <div class="row">
+                                
+                                    <div class="col-md-9">
+                                       <h3>Add Team</h3>
+                                    </div>
+
+                                    <div class="col-md-3" style="line-height: 60px;">                                
+                                        <a href="<?php echo base_url . 'viewTeams.php' ?>"> <i style="color: green" class="fa fa-eye"></i> View Team</a>
+                                    </div>
+                                    
+                                </div>                                
+                            
+                            
+                            
                             <hr>
 
                             <div class="tab-content">
