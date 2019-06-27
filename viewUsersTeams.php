@@ -13,6 +13,7 @@ if (isset($_SESSION['recError']['recError'])) {
     $recError = $_SESSION['recError']['recError'];
     unset($_SESSION['recError']['recError']);
 }
+
 ?>
 
 <!DOCTYPE HTML>

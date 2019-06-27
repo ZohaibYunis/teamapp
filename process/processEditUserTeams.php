@@ -63,24 +63,26 @@
         
         $query  = mysqli_query($connect, $sql);
         
-        if (mysqli_insert_id($connect)){
-            
-            $success['userTeamAdded'] = "User Team Added.";
+        if (mysqli_affected_rows($connect)){
+
+            $success['teamAdded'] = "User Teams Has Been Updated.";
             $_SESSION['success'] = $success;
             header('location: ../viewUsersTeams.php');            
             
-        }  else {
-            
-            $errors['Input_error'] = "Sql query error." . mysqli_errno($connect) . " " . mysqli_error($connect);
+        }  
+        
+        else {
+
+            $errors['Input_error'] = "We are Not find any update in this page.";
             $_SESSION['errors']    = $errors;
-            header('location: ../editUserTeam.php');
+            header("location: ../editUserTeam.php?editUserTeam=$userTeamId");
             
         }
         
     }else{
         
         $_SESSION['errors'] = $errors;
-        header('location: ../editUserTeam.php');
+        header("location: ../editUserTeam.php?editUserTeam=$userTeamId");
         
     }
     

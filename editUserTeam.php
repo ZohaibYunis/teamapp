@@ -37,6 +37,11 @@ require_once './Includes/functions.php';
     }
 
 
+//    echo '<pre>';
+    $data = $results['team_id'];
+    $teamsData = explode(',', $data);
+//    print_r($teamsData);
+//    die();
 ?>
 
 <!DOCTYPE HTML>
@@ -133,7 +138,7 @@ require_once './Includes/functions.php';
                                                 <select name="teams[]" multiple="" class="form-control1">
                                                     <option value="">Select Team</option>
                                                     <?php foreach ($teams as $team): ?>
-                                                            <option value="<?php echo trim($team['id']); ?>"><?php echo trim($team['name']); ?></option>
+                                                    <option <?php  echo (in_array($team['id'], $teamsData)) ? 'selected' : ''; ?> value="<?php echo trim($team['id']); ?>"><?php echo trim($team['name']); ?></option>
                                                     <?php endforeach;  ?>                                                    
                                                 </select>
                                                 
